@@ -12,11 +12,15 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-// Ensure the authentication routes are loaded before product routes
-require __DIR__.'/auth.php';  // Move this above the product routes down below was giving errors
 
-Route::get('/products/create', [ProductController::class, 'create'])->name('products.create'); //Moving this above the middleware took away the error.
-// Protected routes
+
+// Ensure authentication routes are loaded before product routes
+require __DIR__.'/auth.php';
+
+// Public route to access product creation (moved here due to earlier fix)
+Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
+
+// Protected routes (only for logged-in users)
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -25,12 +29,20 @@ Route::middleware('auth')->group(function () {
     Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
     Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
 
-
     Route::get('/products', [ProductController::class, 'index'])->name('products.index');
     Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
-    // Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
     Route::post('/products', [ProductController::class, 'store'])->name('products.store');
 });
+
+
+Route::middleware(['auth', 'is_admin'])->group(function () {
+    Route::get('/admin/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
+});
+
+
+
 
 
 
