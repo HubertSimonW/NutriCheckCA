@@ -1,7 +1,8 @@
 <?php
 
 namespace Database\Seeders;
-
+use App\Models\Product;
+use App\Models\Brand;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -11,7 +12,10 @@ class ProductSeeder extends Seeder
      * Run the database seeds.
      */
     public function run(): void
+
     {
+        $brands = Brand::all();
+
         $products = [
             [
                 'brand_id' => 1, // Brand id - from brand seeder
@@ -33,7 +37,7 @@ class ProductSeeder extends Seeder
                 'protein' => 30,
                 'size' => '330ml',
                 'image' => 'greenshake.jpg',
-                'is_eco_friendly' => false
+                'is_eco_friendly' => falsegi
             ],
         ];
 

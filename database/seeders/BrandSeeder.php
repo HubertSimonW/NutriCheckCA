@@ -13,16 +13,16 @@ class BrandSeeder extends Seeder
     public function run(): void
     {
         $brands = [
-            ['name' => 'Nike', 'p_score' => rand(1, 100)],
-            ['name' => 'Adidas', 'p_score' => rand(1, 100)],
-            ['name' => 'Puma', 'p_score' => rand(1, 100)],
-            ['name' => 'Under Armour', 'p_score' => rand(1, 100)],
-            ['name' => 'Reebok', 'p_score' => rand(1, 100)],
-            ['name' => 'New Balance', 'p_score' => rand(1, 100)],
-            ['name' => 'Asics', 'p_score' => rand(1, 100)],
-            ['name' => 'Converse', 'p_score' => rand(1, 100)],
-            ['name' => 'Vans', 'p_score' => rand(1, 100)],
-            ['name' => 'Sketchers', 'p_score' => rand(1, 100)],
+            ['name' => 'EcoBar', 'p_score' => rand(1, 100)],
+            ['name' => 'GreenShakes', 'p_score' => rand(1, 100)],
+            ['name' => 'Tayto', 'p_score' => rand(1, 100)],
+            ['name' => 'Pure Power', 'p_score' => rand(1, 100)],
+            ['name' => 'Pure Meals', 'p_score' => rand(1, 100)],
+            ['name' => 'Supervalue Premium', 'p_score' => rand(1, 100)],
+            ['name' => 'Ristorante', 'p_score' => rand(1, 100)],
+            ['name' => 'Fit Meals', 'p_score' => rand(1, 100)],
+            // ['name' => 'Vans', 'p_score' => rand(1, 100)],
+            // ['name' => 'Sketchers', 'p_score' => rand(1, 100)],
         ];
 
         // Put brands into the DB

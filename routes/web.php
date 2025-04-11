@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -29,10 +30,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
     Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
     Route::get('/products/{id}/suggestions', [ProductController::class, 'suggestions'])->name('products.suggestions');
-    Route::get('/search', [ProductController::class, 'search'])->name('products.search');
+    // Route::get('/search', [ProductController::class, 'search'])->name('products.search');
     Route::get('/products', [ProductController::class, 'index'])->name('products.index');
     Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
     Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+    Route::get('/brands', [BrandController::class, 'index'])->name('brands.index');
+
 });
 
 

@@ -10,10 +10,14 @@ class BrandController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
-    }
+
+
+     public function index()
+     {
+         $brands = Brand::with('products')->get(); //  Eager-load products
+         return view('brands.index', compact('brands'));
+     }
+
 
     /**
      * Show the form for creating a new resource.
