@@ -12,7 +12,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::all(); // Get all products
+        return view('products.index', compact('products')); // Pass to the view
     }
 
     /**
@@ -36,13 +37,8 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        // Find the product by ID
-        $product = Product::findOrFail($id);
-
-        // Retrieve related products
-        $relatedProducts = $product->relatedProducts;
-
-        return view('product.show', compact('product', 'relatedProducts'));
+        $product = \App\Models\Product::findOrFail($id);
+        return view('products.show', compact('product'));
     }
 
     /**

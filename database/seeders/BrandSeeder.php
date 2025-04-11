@@ -1,8 +1,7 @@
 <?php
 
 namespace Database\Seeders;
-
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -26,7 +25,7 @@ class BrandSeeder extends Seeder
             ['name' => 'Sketchers', 'p_score' => rand(1, 100)],
         ];
 
-        // Insert the brands into the database
+        // Put brands into the DB
         foreach ($brands as $brand) {
             DB::table('brands')->insert([
                 'name' => $brand['name'],
@@ -34,5 +33,6 @@ class BrandSeeder extends Seeder
             ]);
         }
     }
-
 }
+
+
