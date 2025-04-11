@@ -7,7 +7,7 @@
     @endforeach
 </ul> --}}
 
-extends('layouts.app')
+{{-- extends('layouts.app')
 
 @section('content')
     <div class="container">
@@ -24,5 +24,14 @@ extends('layouts.app')
                 <li>{{ $relatedProduct->name }}</li>
             @endforeach
         </ul>
+    </div>
+@endsection --}}
+
+@extends('layouts.app')
+
+@section('content')
+    <div class="max-w-7xl mx-auto p-6">
+        {{-- Replaces the long HTML with a Blade component --}}
+        <x-product-details :product="$product" />
     </div>
 @endsection

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Brand;  // To use the brand model
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -12,8 +13,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all(); // Get all products
-        return view('products.index', compact('products')); // Pass to the view
+        $products = Product::all(); // Get all of the products
+        return view('products.index', compact('products')); // Pass this to the view
     }
 
     /**
@@ -21,7 +22,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $brands = Brand::all();
+        return view('products.create', compact('brands')); // Pass the brands to the view
     }
 
     /**
@@ -29,7 +31,39 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate inputs
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'size' => 'required|string|max:50',
+            'carbs' => 'required|numeric|min:0',
+            'fat' => 'required|numeric|min:0',
+            'protein' => 'required|numeric|min:0',
+            'cal' => 'required|numeric|min:0',
+            'is_eco_friendly' => 'nullable|boolean',
+            'brand_id' => 'required|exists:brands,id', // Ensure brand_id exists in the brands table
+            'image' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
+
+        // Managhe image upload
+        $imagePath = $request->file('image')->store('images', 'public');
+
+        // Manage eco friendly field as boolean
+        $isEcoFriendly = $request->has('is_eco_friendly') ? 1 : 0;
+
+        // Save to database
+        Product::create([
+            'name' => $validated['name'],
+            'size' => $validated['size'],
+            'carbs' => $validated['carbs'],
+            'fat' => $validated['fat'],
+            'protein' => $validated['protein'],
+            'cal' => $validated['cal'],
+            'is_eco_friendly' => $isEcoFriendly,
+            'brand_id' => $validated['brand_id'],
+            'image' => basename($imagePath), // Store the image filename
+        ]);
+
+        return redirect()->route('products.index')->with('success', 'Product added!');
     }
 
     /**
@@ -65,3 +99,4 @@ class ProductController extends Controller
         //
     }
 }
+

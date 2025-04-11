@@ -14,7 +14,7 @@ class ProductSeeder extends Seeder
     {
         $products = [
             [
-                'brand_id' => 1, // Brand id - fromn brand seeder
+                'brand_id' => 1, // Brand id - from brand seeder
                 'name' => 'Eco Protein Bar',
                 'cal' => 250,
                 'carbs' => 25,

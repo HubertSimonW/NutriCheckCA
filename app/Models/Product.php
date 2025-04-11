@@ -8,7 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
-
+    protected $fillable = [
+        'name',
+        'size',
+        'carbs',
+        'fat',
+        'protein',
+        'cal',
+        'is_eco_friendly',
+        'image',
+    ];
     //   Get the products that are related to the current product.
 
     public function relatedProducts()
