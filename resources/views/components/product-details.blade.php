@@ -1,11 +1,8 @@
-@props(['product'])
-
-<!-- Product Details Component -->
 <div class="border rounded-lg shadow-md p-6 bg-white max-w-xl mx-auto">
     <h1 class="text-3xl font-bold text-gray-800 mb-4">{{ $product->name }}</h1>
 
     <div class="overflow-hidden rounded-lg mb-4 flex justify-center">
-        <img src="{{ asset('images/' . $product->image) }}" alt="{{ $product->name }}" class="w-full max-w-xs h-auto object-cover">
+        <img src="{{ asset('storage/images/' . $product->image) }}" alt="{{ $product->name }}" class="w-full max-w-xs h-auto object-cover">
     </div>
 
     <div class="text-gray-700 space-y-2">

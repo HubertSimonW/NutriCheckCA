@@ -35,3 +35,4 @@
         <x-product-details :product="$product" />
     </div>
 @endsection
+
