@@ -3,7 +3,7 @@
 <a href="{{ route('products.show', $product->id) }}"
     class="block border border-gray-200 rounded-lg overflow-hidden shadow hover:shadow-lg transition duration-300 bg-white">
     <div class="h-48 overflow-hidden flex justify-center items-center bg-gray-100">
-        <!-- Display The Product Image -->
+        <!-- Display Product Image -->
         <img src="{{ asset('images/' . $product->image) }}" alt="{{ $product->name }}" class="object-cover h-full">
     </div>
     <div class="p-4">

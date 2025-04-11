@@ -1,59 +1,32 @@
-{{-- <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('All Products') }}
-        </h2>
-    </x-slot>
-
-    <div class="max-w-7xl mx-auto p-4">
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            @foreach($products as $product)
-                <x-product-card :product="$product" />
-            @endforeach
-        </div>
-    </div>
-</x-app-layout> --}}
-
 @extends('layouts.app')
 
 @section('content')
-    <div class="max-w-7xl mx-auto p-6">
-        <h1 class="text-2xl font-bold mb-4">All Products</h1>
+<div class="bg-pink-100 py-10">
+    <div class="max-w-7xl mx-auto px-4">
+        <h1 class="text-4xl font-bold text-center mb-6">Our Products</h1>
 
-        @if($products->count())
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                @foreach($products as $product)
-                    <div class="flex flex-col justify-between border rounded p-4 shadow bg-white hover:shadow-lg transition h-full">
-                        <div>
-                            <a href="{{ route('products.show', $product->id) }}">
-                                <img src="{{ asset('storage/images/' . $product->image) }}" alt="{{ $product->name }}" class="h-48 w-full object-cover rounded mb-4">
-                                <h2 class="text-xl font-semibold">{{ $product->name }}</h2>
-                                <p>Protein: {{ $product->protein }}g</p>
-                                <p>Carbs: {{ $product->carbs }}g</p>
-                                <p>Fat: {{ $product->fat }}g</p>
-                                <p>Calories: {{ $product->cal }} kcal</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            @foreach ($products as $product)
+                <div class="bg-white rounded-lg shadow-md p-4 text-center">
+                    <img src="{{ asset('storage/images/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-48 object-cover rounded mb-3">
+                    <h2 class="text-xl font-semibold text-gray-800">{{ $product->name }}</h2>
+                    <p><strong>Protein:</strong> {{ $product->protein }}g</p>
+                    <p><strong>Carbs:</strong> {{ $product->carbs }}g</p>
+                    <p><strong>Fat:</strong> {{ $product->fat }}g</p>
+                    <p><strong>Calories:</strong> {{ $product->cal }} kcal</p>
 
-                                @if ($product->is_eco_friendly)
-                                    <span class="inline-block mt-2 px-2 py-1 text-xs font-medium bg-green-100 text-green-700 rounded">
-                                        Eco-Friendly
-                                    </span>
-                                @endif
-                            </a>
-                        </div>
+                    @if ($product->is_eco_friendly)
+                        <span class="inline-block mt-2 px-2 py-1 text-sm font-semibold bg-green-100 text-green-700 rounded">
+                            Eco-Friendly
+                        </span>
+                    @endif
 
-                        {{-- Edit Button bottom right --}}
-                        <div class="flex justify-end mt-4">
-                            <a href="{{ route('products.edit', $product->id) }}" class="text-indigo-600 hover:text-indigo-800 font-medium">
-                                Edit
-                            </a>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        @else
-            <p>No products found.</p>
-        @endif
+                    <a href="{{ route('products.show', $product->id) }}" class="mt-4 inline-block text-blue-600 underline">View Product</a>
+                </div>
+            @endforeach
+        </div>
     </div>
+</div>
 @endsection
 
 

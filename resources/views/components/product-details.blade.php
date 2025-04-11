@@ -18,4 +18,10 @@
             </span>
         @endif
     </div>
+
+    {{-- Eco-Friendly Suggestions Link --}}
+    <a href="{{ route('products.suggestions', $product->id) }}" class="text-blue-600 underline mt-6 inline-block">
+        View Eco-Friendly Alternatives
+    </a>
 </div>
+

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Product;
 use App\Models\Brand;
 use Illuminate\Http\Request;
@@ -61,18 +62,22 @@ class ProductController extends Controller
         return redirect()->route('products.index')->with('success', 'Product added!');
     }
 
-    /**
-     * Display the specified resource.
-     */
+
+
+
     public function show($id)
     {
         $product = Product::findOrFail($id);
-        return view('products.show', compact('product'));
+        $suggestions = Product::where('id', '!=', $product->id)->inRandomOrder()->limit(4)->get();
+
+        return view('products.show', compact('product', 'suggestions'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
+
+
+
+
     public function edit(Product $product)
     {
         $brands = Brand::all();
@@ -116,4 +121,21 @@ class ProductController extends Controller
     {
         //
     }
+
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        $products = Product::where('name', 'like', '%' . $query . '%')->get();
+
+        return view('products.index', compact('products'));
+    }
+
+
+
+
+
+
+
 }
