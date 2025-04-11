@@ -15,13 +15,13 @@ Route::get('/dashboard', function () {
 
 
 
-// Ensure authentication routes are loaded before product routes
+// Ensures auth routes are loaded before product routes
 require __DIR__.'/auth.php';
 
 // Public route to access product creation (moved here due to earlier fix)
 Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
 
-// Protected routes (only for logged-in users)
+// Protected routes - logged in users only
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
