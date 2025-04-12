@@ -47,7 +47,7 @@
                 <input type="number" name="cal" id="cal" class="w-full border rounded px-3 py-2" required>
             </div>
 
-            {{-- Brand dropdown part --}}
+            {{-- Brand dropdown bit --}}
             <div class="mb-4">
                 <label for="brand_id" class="block text-sm font-medium text-gray-700">Brand</label>
                 <select name="brand_id" id="brand_id"

@@ -35,6 +35,17 @@
         </div>
     </section>
 
+                 @auth
+    @if (Auth::user()->role === 'admin')
+        <div class="text-center mt-4">
+            <a href="{{ route('products.edit', $product->id) }}" class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+                Edit This Product
+            </a>
+        </div>
+    @endif
+@endauth
+
+
     <!-- Suggestions Section -->
     <section class="mt-24 max-w-7xl mx-auto px-6 text-center">
         <h3 class="text-2xl font-semibold mb-10">
